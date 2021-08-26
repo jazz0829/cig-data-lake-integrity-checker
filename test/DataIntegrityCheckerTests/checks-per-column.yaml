@@ -1,0 +1,583 @@
+﻿### Warning : here in exceptions used SQL column names [as POC]
+### EolHosting
+-
+ source:
+  type: SQL
+  name: AccountsClassifications
+  options:
+   order_by: CAST(ID AS varchar(36))
+   limit: 5000
+ target:
+  type: AWS
+  name: accountsclassifications
+  options:
+   order_by: id
+   limit: 5000
+ scope:
+  - values_per_column
+-
+ # Mismatches here
+ source:
+  type: SQL
+  name: Accounts
+  options:
+   order_by: CAST(AccountID AS varchar(36)),UPPER(Environment)
+   # default limit is 5000
+ target:
+  type: AWS
+  name: accounts
+  options:
+   order_by: accountid,UPPER(environment)
+ scope:
+  - values_per_column
+-
+ source:
+  type: SQL
+  name: ActivitySectors
+  options:
+   order_by: CAST(ID AS varchar(36))
+ target:
+  type: AWS
+  name: activitysectors
+  options:
+   order_by: id
+ scope:
+  - values_per_column
+-
+ source:
+  type: SQL
+  name: AppUsageLines
+  options:
+   order_by: CAST(ID AS varchar(36))
+ target:
+  type: AWS
+  name: appusagelines
+  options:
+   order_by: id
+ scope:
+  - values_per_column
+-
+ source:
+  type: SQL
+  name: BlockingStatus
+  options:
+   order_by: BlockingStatusCode
+ target:
+  type: AWS
+  name: blockingstatus
+  options:
+   order_by: blockingstatuscode
+ scope:
+  - values_per_column
+-
+ source:
+  type: SQL
+  name: BusinessTypes
+  options:
+   order_by: CAST(ID AS varchar(36))
+   limit: 500
+ target:
+  type: AWS
+  name: businesstypes
+  options:
+   order_by: id
+   limit: 500
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: CompanySize
+  options:
+   order_by: CAST(ID AS varchar(36))
+   limit: 100
+ target:
+  type: AWS
+  name: companysize
+  options:
+   order_by: id
+   limit: 100
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Contacts
+  options:
+   order_by: CAST(ContactID AS varchar(36)),CIGCopyTime
+   override_column_type:
+    IsUXParticipant : boolean
+    IsMailingExcluded : boolean
+ target:
+  type: AWS
+  name: contacts
+  options:
+   order_by: contactid,cigcopytime
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: ContractEvents
+  options:
+   order_by: CAST(ID AS varchar(36))
+   limit: 100
+ target:
+  type: AWS
+  name: contractevents
+  options:
+   order_by: id
+   limit: 100
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: ContractLines
+  options:
+   order_by: CAST(ID AS varchar(36))
+ target:
+  type: AWS
+  name: contractlines
+  options:
+   order_by: id
+ scope:
+  - values_per_column
+- 
+ # HID Mismatches
+ source:
+  type: SQL
+  name: ContractMutations
+  options:
+   order_by: CAST(ID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   limit: 10000
+ target:
+  type: AWS
+  name: contractmutations
+  options:
+   order_by: id,cigcopytime,UPPER(environment)
+   limit: 10000
+ scope:
+  - values_per_column
+- 
+ # A Large Transformation
+ source:
+  type: SQL
+  name: DivisionsLog
+  options:
+   order_by: DivisionCode,UPPER(Environment)
+ target:
+  type: AWS
+  name: divisionslog
+  options:
+   order_by: divisioncode,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Divisions
+  options:
+   order_by: DivisionCode,CAST(AccountID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   limit: 500 # Incease limit when GDPR fixes in place
+ target:
+  type: AWS
+  name: divisions
+  options:
+   order_by: divisioncode,accountid,cigcopytime,UPPER(environment)
+   limit: 500 # Incease limit when GDPR fixes in place
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Items
+  options:
+   order_by: CAST(ItemID AS varchar(36)),ItemType,CIGCopyTime,UPPER(Environment)
+   override_column_type: # tinyints
+    CopyRemarks: boolean
+    HasBillOfMaterial: boolean
+    IsBatchNumberItem: boolean
+    IsMakeItem: boolean
+    IsNewContract: boolean
+    IsOnDemandItem: boolean
+    IsRegistrationCodeItem: boolean
+    IsTaxable: boolean
+    IsTime: boolean
+    IsWebshopItem: boolean
+    RoundEach: boolean
+    RoundPlannedQuantityFactor: boolean
+    UseExplosion: boolean
+ target:
+  type: AWS
+  name: items
+  options:
+   order_by: itemid,itemtype,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Persons
+  options:
+   order_by: CAST(PersonID AS varchar(36))
+   override_column_type:
+    IsAnonymized: boolean
+ target:
+  type: AWS
+  name: persons
+  options:
+   order_by: personid
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Users
+  options:
+   order_by: CAST(UserID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   override_column_type:
+    Blocked: boolean
+ target:
+  type: AWS
+  name: users
+  options:
+   order_by: userid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+## EolHosting_Requests
+- 
+ source:
+  type: SQL
+  name: Requests_AdministrativeQuestion
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_administrativequestion
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_AskQuestionAboutInvoice
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_askquestionaboutinvoice
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_AutomaticPriceAgreement
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   override_column_type:
+    Processed: datetime # Seems like this type has to be fixed in SQL or AWS
+ target:
+  type: AWS
+  name: requests_automaticpriceagreement
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_CancellationRequest
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_cancellationrequest
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_CancellationDowngrade_ImmediateEffect
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_cancellationdowngrade_immediateeffect
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_Complaint
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_complaint
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_ConsultAanvraag
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_consultaanvraag
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_ContractChange
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_contractchange
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_ConversionRequest
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_conversionrequest
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_CreditInvoice
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_creditinvoice
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_CustomerCare
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_customercare
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_CustomerComplaint
+  options:
+   order_by: CAST(ID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   override_column_name:
+    Claimed ammount: claimed_amount
+    ID: requestid
+ target:
+  type: AWS
+  name: requests_customercomplaint
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_CustomerProgress
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_customerprogress
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_DefinitiefAbonnement
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   override_column_name:
+    Name, adress, etc: name_address_etc
+ target:
+  type: AWS
+  name: requests_definitiefabonnement
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_Enablement
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+   override_column_name:
+    Survey respons: survey_response
+ target:
+  type: AWS
+  name: requests_enablement
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_Endorsement
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_endorsement
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_ExecuteTransferRequest
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_executetransferrequest
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_OutstandingProductIssue
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_outstandingproductissue
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_PartialCancellation
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_partialcancellation
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_PriceAgreement
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_priceagreement
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_RequestTrialModules
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_requesttrialmodules
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_TransferRequest
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_transferrequest
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_WelcomeCall
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_welcomecall
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+- 
+ source:
+  type: SQL
+  name: Requests_SalesCommunicationNote
+  options:
+   order_by: CAST(RequestID AS varchar(36)),CIGCopyTime,UPPER(Environment)
+ target:
+  type: AWS
+  name: requests_salescommunicationnote
+  options:
+   order_by: requestid,cigcopytime,UPPER(environment)
+ scope:
+  - values_per_column
+### Everage
+-
+ source:
+  type: SQL
+  name: Evergage_CancellationSurvey
+  options:
+   order_by: AccountName
+ target:
+  type: AWS
+  name: evergage_cancellationsurvey
+  options:
+   order_by: accountname
+ scope:
+  - values_per_column

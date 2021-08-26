@@ -1,0 +1,75 @@
+﻿using System.Collections.Generic;
+using DataIntegrityCheckerTests.DataUtils;
+
+namespace DataIntegrityCheckerTests.RawDataTests.EolHosting.UsersTests
+{
+	public class RawUsersTransformation : ITransformation
+	{
+		public string PrepareAwsValue(
+			string columnName, Dictionary<string, string> row)
+		{
+			var value = row[columnName.ToLowerInvariant()];
+			switch (columnName)
+			{
+				case "syscreated":
+				case "sysmodified":
+				case "StartDate":
+				case "EndDate":
+				case "ValidationDate":
+				case "LastLogin":
+				case "LockoutTime":
+				case "TotpRegistrationUtcDate":
+				case "TotpSkippedUtc":
+				case "TotpForcedByExactUtc":
+				case "MarketingOptInDate":
+				case "MarketingOptOutDate":
+				case "CIGCopyTime":
+					value = AwsRawCellPreparationMapper.AsDate(value);
+					break;
+				case "CIGProcessed":
+					value = AwsRawCellPreparationMapper.AsBool(value);
+					break;
+			}
+			return $"{value}\n";
+		}
+
+		public string Execute(string columnName, object row)
+		{
+			var value = (row as IDictionary<string, object>)[columnName];
+			switch (columnName)
+			{
+				case "ID":
+				case "UserID":
+				case "AccountID":
+				case "PersonID":
+				case "ValidationID":
+				case "GoogleClientID":
+				case "Customer":
+				case "Person":
+				case "syscreator":
+				case "sysmodifier":
+					value = RawCellMapper.AsGuid(value);
+					break;
+				case "syscreated":
+				case "sysmodified":
+				case "StartDate":
+				case "EndDate":
+				case "ValidationDate":
+				case "LastLogin":
+				case "LockoutTime":
+				case "TotpRegistrationUtcDate":
+				case "TotpSkippedUtc":
+				case "TotpForcedByExactUtc":
+				case "MarketingOptInDate":
+				case "MarketingOptOutDate":
+				case "CIGCopyTime":
+					value = RawCellMapper.AsDate(value);
+					break;
+				case "Environment":
+					value = RawCellMapper.AsEnvironmentCode(value);
+					break;
+			}
+			return $"{value}\n";
+		}
+	}
+}

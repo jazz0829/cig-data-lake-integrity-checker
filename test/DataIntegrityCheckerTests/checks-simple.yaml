@@ -1,0 +1,459 @@
+﻿### EolHosting
+-
+ source:
+  type: SQL
+  name: AccountsClassifications
+ target:
+  type: AWS
+  name: accountsclassifications
+ scope:
+  - table_schema
+  - row_count
+-
+ source:
+  type: SQL
+  name: Accounts
+ target:
+  type: AWS
+  name: accounts
+  options:
+   skip_columns:
+    - accountidhash
+ scope:
+  - table_schema
+  - row_count
+-
+ source:
+  type: SQL
+  name: ActivitySectors
+ target:
+  type: AWS
+  name: activitysectors
+ scope:
+  - table_schema
+  - row_count
+-
+ source:
+  type: SQL
+  name: AppUsageLines
+  options:
+   override_column_type:
+    usedondate: timestamp
+ target:
+  type: AWS
+  name: appusagelines
+ scope:
+  - table_schema
+  - row_count
+-
+ source:
+  type: SQL
+  name: BlockingStatus
+ target:
+  type: AWS
+  name: blockingstatus
+ scope:
+  - table_schema
+  - row_count
+-
+ source:
+  type: SQL
+  name: BusinessTypes
+ target:
+  type: AWS
+  name: businesstypes
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: CompanySize
+ target:
+  type: AWS
+  name: companysize
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Contacts
+  options:
+   override_column_type:
+    ismailingexcluded : boolean
+    isuxparticipant : boolean
+ target:
+  type: AWS
+  name: contacts
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: ContractEvents
+ target:
+  type: AWS
+  name: contractevents
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: ContractLines
+ target:
+  type: AWS
+  name: contractlines
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: ContractMutations
+ target:
+  type: AWS
+  name: contractmutations
+ scope:
+  - table_schema
+  - row_count
+- 
+ # A large transformation
+ source:
+  type: SQL
+  name: DivisionsLog
+ target:
+  type: AWS
+  name: divisionslog
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Divisions
+ target:
+  type: AWS
+  name: divisions
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Items
+  options:
+   override_column_type: # tinyints
+    copyremarks : boolean
+    hasbillofmaterial : boolean
+    isbatchnumberitem : boolean
+    ismakeitem : boolean
+    isnewcontract : boolean
+    isondemanditem : boolean
+    isregistrationcodeitem : boolean
+    istaxable : boolean
+    istime : boolean
+    iswebshopitem : boolean
+    roundeach : boolean
+    roundplannedquantityfactor : boolean
+    useexplosion : boolean
+ target:
+  type: AWS
+  name: items
+  options:
+   skip_columns:
+    - picture # should be fixed on db side
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Persons
+  options:
+   override_column_type:
+    isanonymized: boolean
+ target:
+  type: AWS
+  name: persons
+  options:
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Users
+  options:
+   override_column_type:
+    blocked : boolean
+ target:
+  type: AWS
+  name: users
+ scope:
+  - table_schema
+  - row_count
+### EolHosting_Requests
+- 
+ source:
+  type: SQL
+  name: Requests_AdministrativeQuestion
+ target:
+  type: AWS
+  name: requests_administrativequestion
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_AskQuestionAboutInvoice
+ target:
+  type: AWS
+  name: requests_askquestionaboutinvoice
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_AutomaticPriceAgreement
+ target:
+  type: AWS
+  name: requests_automaticpriceagreement
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_CancellationRequest
+ target:
+  type: AWS
+  name: requests_cancellationrequest
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_CancellationDowngrade_ImmediateEffect
+ target:
+  type: AWS
+  name: requests_cancellationdowngrade_immediateeffect
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_Complaint
+ target:
+  type: AWS
+  name: requests_complaint
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_ConsultAanvraag
+ target:
+  type: AWS
+  name: requests_consultaanvraag
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_ContractChange
+ target:
+  type: AWS
+  name: requests_contractchange
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_ConversionRequest
+ target:
+  type: AWS
+  name: requests_conversionrequest
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_CreditInvoice
+ target:
+  type: AWS
+  name: requests_creditinvoice
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_CustomerCare
+ target:
+  type: AWS
+  name: requests_customercare
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_CustomerComplaint
+  options:
+   override_column_name:
+    Claimed ammount: claimed_amount
+    ID: requestid
+ target:
+  type: AWS
+  name: requests_customercomplaint
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_CustomerProgress
+ target:
+  type: AWS
+  name: requests_customerprogress
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_DefinitiefAbonnement
+  options:
+   override_column_name:
+    Name, adress, etc: name_address_etc
+ target:
+  type: AWS
+  name: requests_definitiefabonnement
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_Enablement
+  options:
+   override_column_name:
+    Survey respons: survey_response
+ target:
+  type: AWS
+  name: requests_enablement
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_Endorsement
+ target:
+  type: AWS
+  name: requests_endorsement
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_ExecuteTransferRequest
+ target:
+  type: AWS
+  name: requests_executetransferrequest
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_OutstandingProductIssue
+ target:
+  type: AWS
+  name: requests_outstandingproductissue
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_PartialCancellation
+ target:
+  type: AWS
+  name: requests_partialcancellation
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_PriceAgreement
+ target:
+  type: AWS
+  name: requests_priceagreement
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_RequestTrialModules
+ target:
+  type: AWS
+  name: requests_requesttrialmodules
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_TransferRequest
+ target:
+  type: AWS
+  name: requests_transferrequest
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_WelcomeCall
+ target:
+  type: AWS
+  name: requests_welcomecall
+ scope:
+  - table_schema
+  - row_count
+- 
+ source:
+  type: SQL
+  name: Requests_SalesCommunicationNote
+ target:
+  type: AWS
+  name: requests_salescommunicationnote
+ scope:
+  - table_schema
+  - row_count
+### Everage
+-
+ source:
+  type: SQL
+  name:  Evergage_CancellationSurvey
+ target:
+  type: AWS
+  name: evergage_cancellationsurvey
+ scope:
+  - table_schema
+  - row_count

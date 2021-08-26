@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28124.53
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataIntegrityCheckerTests", "test\DataIntegrityCheckerTests\DataIntegrityCheckerTests.csproj", "{132AAA6A-3639-4071-A3C3-3888BEC43684}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E4D97B02-5697-4511-BB69-516578D0A4C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{132AAA6A-3639-4071-A3C3-3888BEC43684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132AAA6A-3639-4071-A3C3-3888BEC43684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132AAA6A-3639-4071-A3C3-3888BEC43684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132AAA6A-3639-4071-A3C3-3888BEC43684}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{132AAA6A-3639-4071-A3C3-3888BEC43684} = {E4D97B02-5697-4511-BB69-516578D0A4C6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABF272FF-4F5A-4B0E-BD8B-4EE9EA26F616}
+	EndGlobalSection
+EndGlobal

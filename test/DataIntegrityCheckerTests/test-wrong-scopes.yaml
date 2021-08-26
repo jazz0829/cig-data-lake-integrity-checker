@@ -1,0 +1,16 @@
+﻿-
+ source:
+  type: SQL
+  name: SomeTableTestWithNoScope
+ target:
+  type: AWS
+  name: sometable-test-with-no-scope
+-
+ source:
+  type: SQL
+  name: SomeTableTestWithWrongScope
+ target:
+  type: AWS
+  name: sometable-test-with-wrong-scope
+ scope:
+  - wrong
